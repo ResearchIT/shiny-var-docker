@@ -23,7 +23,7 @@ RUN Rscript -e "install.packages(c('data.table','ontologyIndex','jsonlite','DT',
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('GenomicFeatures','Rsamtools'))"
 
 #Data mount
-RUN echo "lss-9.its.iastate.edu:/store/research/vollbrec-lab/webapps/shiny-var/data /opt/app-root/src/data" >> /etc/fstab
+RUN echo "lss-9.its.iastate.edu:/store/research/vollbrec-lab/webapps/shiny-var/data /opt/app-root/src/data nfs defaults,netdev,ro 0 0" >> /etc/fstab
 
 #shiny-server config file changes
 RUN sed -i -e 's/run_as 1001;/run_as openshift;/g' /etc/shiny-server/shiny-server.conf;
