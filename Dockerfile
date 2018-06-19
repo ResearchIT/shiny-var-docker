@@ -20,8 +20,7 @@ RUN yum -y install nfs-utils
 
 #R dependencies
 RUN Rscript -e "install.packages(c('data.table','ontologyIndex','jsonlite','DT','shiny','WhopGenome'), repos='https://cran.rstudio.com/')"
-RUN Rscript -e "source('https://bioconductor.org/biocLite.R')"
-RUN Rscript -e "biocLite('GenomicFeatures','Rsamtools')"
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('GenomicFeatures','Rsamtools'))"
 
 #Data mount
 RUN echo "lss-9.its.iastate.edu:/store/research/vollbrec-lab/webapps/shiny-var/data /opt/app-root/src/data" >> /etc/fstab
