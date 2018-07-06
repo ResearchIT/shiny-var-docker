@@ -20,7 +20,8 @@ RUN yum -y install nfs-utils
 
 #R dependencies
 RUN Rscript -e "install.packages(c('data.table','ontologyIndex','jsonlite','DT','shiny','WhopGenome'), repos='https://cran.rstudio.com/')"
-RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('GenomicFeatures','Rsamtools'))"
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('GenomicFeatures'))"
+RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('Rsamtools'))"
 
 #shiny-server config file changes
 RUN sed -i -e 's/run_as 1001;/run_as openshift;/g' /etc/shiny-server/shiny-server.conf;
