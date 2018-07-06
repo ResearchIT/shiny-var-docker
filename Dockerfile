@@ -22,13 +22,9 @@ RUN yum -y install nfs-utils
 RUN Rscript -e "install.packages(c('data.table','ontologyIndex','jsonlite','DT','shiny','WhopGenome'), repos='https://cran.rstudio.com/')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R')" -e "biocLite(c('GenomicFeatures','Rsamtools'))"
 
-#Data mount
-RUN mkdir /opt/app-root/src/data
-RUN echo "lss-9.its.iastate.edu:/store/research/vollbrec-lab/webapps/shiny-var/data /opt/app-root/src/data nfs defaults,netdev,ro 0 0" >> /etc/fstab
-
 #shiny-server config file changes
 RUN sed -i -e 's/run_as 1001;/run_as openshift;/g' /etc/shiny-server/shiny-server.conf;
-RUN sed -i -e 's|/opt/app-root|/opt/app-root/src|g' /etc/shiny-server/shiny-server.conf
+RUN sed -i -e 's|/opt/app-root|/opt/app-root/src/app|g' /etc/shiny-server/shiny-server.conf
 
 #perms
 RUN chmod -R o+w /var/log/shiny-server
