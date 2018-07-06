@@ -17,6 +17,7 @@ USER 0
 RUN yum -y install libxml2-devel libcurl-devel openssl-devel v8-devel
 RUN yum -y install nss_wrapper
 RUN yum -y install nfs-utils
+RUN yum -y install mariadb-devel
 
 #R dependencies
 RUN Rscript -e "install.packages(c('data.table','ontologyIndex','jsonlite','DT','shiny','WhopGenome','RMariaDB','RMySQL'), repos='https://cran.rstudio.com/')"
